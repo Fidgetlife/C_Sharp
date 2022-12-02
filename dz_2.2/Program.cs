@@ -8,5 +8,5 @@ if(randomNumber / 100 >0)
 else
 {
     Console.WriteLine(randomNumber);
-    Console.WriteLine("У числа нет треьей цифры!");
+    Console.WriteLine("У числа нет третьей цифры!");
 }
