@@ -16,23 +16,53 @@ for(int addressEl = 0; addressEl < sizeArray; addressEl++ )
 
 int[] countArray = new int[sizeArray];
 
-for(int i = 0; i < sizeArray - 1; i++)
+for(int i = 0; i < sizeArray; i++)
 {
-    if(newArray[i] < newArray[i+1]) 
+    if(i == sizeArray -1)
     {
-        countArray[i] = 1; 
+        if(newArray[i] > newArray[i-1]) 
+        {
+            countArray[i] = 1;
+        }
+        else
+        {
+            countArray[i] = 0;
+        }
     }
     else
     {
-         countArray[i] = 0; 
-    }  
+        if(newArray[i] < newArray[i+1]) 
+        {
+            countArray[i] = 1; 
+        }
+        else
+        {
+            countArray[i] = 0; 
+        } 
+    } 
 }
 
 int count = 0;
-for(int y = 0; y < sizeArray-1; y++)
+for(int y = 0; y < sizeArray; y++)
 {
-    if(newArray[y] > newArray[y + 1]) count++;
+    if(y == sizeArray-1)
+    {
+        break;
+    }
+    else
+    {
+        if(countArray[y] > countArray[y + 1]) count++;
+    }
 }
+// Можно включить вывод для наглядности:
+/*int el1 = 0;
+while(el1 < sizeArray)
+{
+    Console.Write($"{countArray[el1]} ");
+    el1++;
+}
+
+Console.WriteLine(":");*/
 
 int el = 0;
 while(el < sizeArray)
@@ -43,4 +73,4 @@ while(el < sizeArray)
 
 Console.WriteLine($"Число подъемов в массиве равно: {count}");
 
-// Нужно доработать. Есть нюансы.
+
