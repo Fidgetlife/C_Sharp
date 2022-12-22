@@ -7,7 +7,13 @@
 // 505 101 410 479
 // => [505, 252.5, 0, 363 ]
 
-int[,] array = new int[10, 10];
+Console.Write("Введите кол-во строк (желательно не меньше 10) массива:  ");
+int row = Convert.ToInt32(Console.ReadLine());
+
+Console.Write("Введите кол-во столбцов (желательно не меньше 10) массива:  ");
+int col = Convert.ToInt32(Console.ReadLine());
+
+int[,] array = new int[row, col];
 
 void FillArray(int[,] arr)
 {
@@ -21,28 +27,64 @@ void FillArray(int[,] arr)
     }
 }
 
-int EnumerationElement(int num)
-{
-    int sumNumber = 0;
-    int amountElement = 0;
-    double result = 0;
-
-
-}
-
+double sumNumber = 0;
+double amountElement = 0;
+    
 double[] arrayAverage = new double[array.GetLength(1)];
-int count = 0;
 
 void EnumerationArray(int[,] arr)
 {
-    for(int i = 0; i < arr.GetLength(1); i++)
+    for(int j = 0; j < arr.GetLength(1); j++)
     {
-        for(int j = 0; j < arr.GetLength(0); j++)
+        for(int i = 0; i < arr.GetLength(0); i++)
         {
             if(arr[i, j] % 10 == arr[i, j] / 100)
             {
-
-            }
+                sumNumber += arr[i, j];
+                amountElement++;
+            }            
+            
         }
+        
+        if(amountElement != 0)
+        {
+            double res = Math.Round(sumNumber / amountElement, 2);
+            arrayAverage[j] = res;
+        }
+        else
+        {
+            arrayAverage[j] = 0;
+        }
+        sumNumber = 0;
+        amountElement = 0;
     }
 }
+
+void PrintArrayArithmeticMean(double[] arr)
+{
+    for(int i = 0; i < arr.Length; i++)
+    {
+        Console.Write(arr[i] + " ");
+    }
+}
+
+void PrintArray(int[,] arr)
+{
+     for(int i = 0; i < arr.GetLength(0); i++)
+     {
+        for(int j = 0; j < arr.GetLength(1); j++)
+        {
+            Console.Write(arr[i, j] + " ");
+        }
+        Console.WriteLine();
+     }
+        
+}
+
+FillArray(array);
+EnumerationArray(array);
+Console.WriteLine("\n-------------------------------------------------------------");
+PrintArray(array);
+Console.WriteLine("-------------------------------------------------------------");
+PrintArrayArithmeticMean(arrayAverage);
+Console.WriteLine("\n");
